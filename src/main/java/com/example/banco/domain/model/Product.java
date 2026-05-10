@@ -62,7 +62,7 @@ public class Product {
             }
         }
 
-        // Regla: Validar estados permitidos (Activa, Inactiva, Cancelada)
+
         if (!"ACTIVA".equalsIgnoreCase(newStatus) &&
                 !"INACTIVA".equalsIgnoreCase(newStatus) &&
                 !"CANCELADA".equalsIgnoreCase(newStatus)) {

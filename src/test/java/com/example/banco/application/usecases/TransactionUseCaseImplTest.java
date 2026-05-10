@@ -19,13 +19,13 @@ import static org.mockito.Mockito.*;
 class TransactionUseCaseImplTest {
 
     @Mock
-    private ProductRepositoryPort productRepository; // Simulamos la DB
+    private ProductRepositoryPort productRepository;
 
     @Mock
-    private MovementRepositoryPort movementRepository; // Simulamos el historial
+    private MovementRepositoryPort movementRepository;
 
     @InjectMocks
-    private TransactionUseCaseImpl transactionUseCase; // El "Service" a probar
+    private TransactionUseCaseImpl transactionUseCase;
 
     @Test
     void shouldThrowExceptionWhenBalanceIsInsufficientForWithdrawAndGmf() {
