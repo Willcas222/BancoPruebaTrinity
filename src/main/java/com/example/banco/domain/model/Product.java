@@ -55,7 +55,6 @@ public class Product {
 
 
     public void changeStatus(String newStatus) {
-        // Regla: Solo se podrán cancelar las cuentas que tengan un saldo igual a $0.
         if ("CANCELADA".equalsIgnoreCase(newStatus)) {
             if (this.balance != null && this.balance.compareTo(BigDecimal.ZERO) != 0) {
                 throw new IllegalStateException("Solo se podrán cancelar las cuentas que tengan un saldo igual a $0.");

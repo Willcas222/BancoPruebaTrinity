@@ -38,7 +38,7 @@ class ClientControllerTest {
             }
             """;
 
-        mockMvc.perform(post("/api/clients") // Ajusta a tu ruta
+        mockMvc.perform(post("/api/clients")
                         .with(csrf())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(payload))

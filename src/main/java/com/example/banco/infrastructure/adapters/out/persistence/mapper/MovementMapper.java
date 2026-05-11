@@ -35,7 +35,7 @@ public class MovementMapper {
         entity.setAmount(domain.getAmount());
         entity.setBalanceAfter(domain.getBalanceAfter());
         entity.setCreatedAt(domain.getCreatedAt());
-        // El producto (FK) se asigna normalmente en el adaptador mediante el repositorio
+
 
         return entity;
     }
