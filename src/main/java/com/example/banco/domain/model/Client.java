@@ -46,7 +46,7 @@ public class Client {
         this.email = email;
         this.birthDate = birthDate;
         this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+        this.updatedAt = LocalDateTime.now();
     }
 
     private void validateEmailFormat(String email) {

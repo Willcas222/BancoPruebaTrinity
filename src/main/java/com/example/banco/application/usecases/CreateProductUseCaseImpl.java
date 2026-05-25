@@ -41,12 +41,7 @@ public class CreateProductUseCaseImpl implements CreateProductUseCase {
         return prefix + String.format("%08d", number);
     }
 
-    public Product createProduct(Product product) {
-        if (product.isGmfExempt()) {
-            validateSingleExemptAccount(product.getClientId());
-        }
-        return productRepositoryPort.save(product);
-    }
+
 
 
     private void validateSingleExemptAccount(Long clientId) {
