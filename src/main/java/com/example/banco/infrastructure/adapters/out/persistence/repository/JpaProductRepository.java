@@ -2,6 +2,7 @@ package com.example.banco.infrastructure.adapters.out.persistence.repository;
 
 import com.example.banco.infrastructure.adapters.out.persistence.entity.ProductEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -22,5 +23,9 @@ public interface JpaProductRepository extends JpaRepository<ProductEntity, Long>
     @Query(value = "SELECT EXISTS(SELECT 1 FROM products WHERE client_id = :clientId AND gmf_exempt = true)",
             nativeQuery = true)
     boolean existsGmfExemptByClientIdNative(@Param("clientId") Long clientId);
+
+    @Modifying
+    @Query(value = "UPDATE products SET status = 'CANCELADA' WHERE id = :id", nativeQuery = true)
+    void deleteById(@Param("id") Long id);
 
 }

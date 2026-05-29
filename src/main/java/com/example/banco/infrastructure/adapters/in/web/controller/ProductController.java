@@ -3,6 +3,7 @@ package com.example.banco.infrastructure.adapters.in.web.controller;
 import com.example.banco.application.dto.ProductRequest;
 import com.example.banco.domain.model.Product;
 import com.example.banco.domain.ports.in.CreateProductUseCase;
+import com.example.banco.domain.ports.in.DeleteProductUseCase;
 import com.example.banco.domain.ports.in.UpdateGmfExemptUseCase;
 import com.example.banco.domain.ports.in.UpdateProductStatusUseCase;
 import org.springframework.http.HttpStatus;
@@ -18,11 +19,13 @@ public class ProductController {
     private final CreateProductUseCase createProductUseCase;
     private final UpdateProductStatusUseCase updateProductStatusUseCase;
     private final UpdateGmfExemptUseCase updateGmfExemptUseCase;
+    private final DeleteProductUseCase deleteProductUseCase;
 
-    public ProductController(CreateProductUseCase createProductUseCase, UpdateProductStatusUseCase updateProductStatusUseCase, UpdateGmfExemptUseCase updateGmfExemptUseCase) {
+    public ProductController(CreateProductUseCase createProductUseCase, UpdateProductStatusUseCase updateProductStatusUseCase, UpdateGmfExemptUseCase updateGmfExemptUseCase, DeleteProductUseCase deleteProductUseCase) {
         this.createProductUseCase = createProductUseCase;
         this.updateProductStatusUseCase = updateProductStatusUseCase;
         this.updateGmfExemptUseCase = updateGmfExemptUseCase;
+        this.deleteProductUseCase = deleteProductUseCase;
     }
 
     @PostMapping
@@ -52,5 +55,11 @@ public class ProductController {
                 "accountNumber", accountNumber,
                 "isExempt", exempt
         ));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
+        deleteProductUseCase.execute(id);
+        return ResponseEntity.noContent().build();
     }
 }

@@ -57,4 +57,15 @@ public class ProductPersistenceAdapter implements ProductRepositoryPort {
     public boolean existsByClientIdAndGmfExemptTrue(Long clientId) {
         return jpaProductRepository.existsGmfExemptByClientIdNative(clientId);
     }
+
+    @Override
+    public Optional<Product> findById(Long id) {
+        return jpaProductRepository.findById(id)
+                .map(productMapper::toDomain);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        jpaProductRepository.deleteById(id);
+    }
 }

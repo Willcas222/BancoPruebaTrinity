@@ -16,6 +16,8 @@ public class CreateClientUseCaseImpl implements CreateClientUseCase {
 
     public Client execute(ClientRequest request) {
 
+        validateRequiredFields(request);
+
         if (repositoryPort.existByIdentification(request.identificationNumber())) {
             throw new IllegalArgumentException("Ya existe un cliente con el número de identificación: "
                     + request.identificationNumber());
@@ -35,5 +37,17 @@ public class CreateClientUseCaseImpl implements CreateClientUseCase {
         );
 
         return repositoryPort.save(client);
+    }
+
+    private void validateRequiredFields(ClientRequest request) {
+        if (request.identificationNumber() == null || request.identificationNumber().trim().isEmpty() ||
+                request.identificationType() == null || request.identificationType().trim().isEmpty() ||
+                request.firstName() == null || request.firstName().trim().isEmpty() ||
+                request.lastName() == null || request.lastName().trim().isEmpty() ||
+                request.email() == null || request.email().trim().isEmpty() ||
+                request.birthDate() == null) {
+
+            throw new IllegalArgumentException("No se permiten campos vacíos al crear un cliente.");
+        }
     }
 }

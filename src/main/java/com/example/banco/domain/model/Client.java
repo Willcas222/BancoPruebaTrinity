@@ -38,6 +38,11 @@ public class Client {
     public Client(Long id, String identificationType, String identificationNumber,
                   String firstName, String lastName, String email, LocalDate birthDate,
                   LocalDateTime createdAt, LocalDateTime updatedAt) {
+
+        validateAge(birthDate);
+        validateNameLength(firstName, lastName);
+        validateEmailFormat(email);
+
         this.id = id;
         this.identificationType = identificationType;
         this.identificationNumber = identificationNumber;
@@ -68,11 +73,13 @@ public class Client {
         }
     }
 
-    public void updateData(String firstName, String lastName, String email) {
+    public void updateData(String firstName, String lastName, String email, String identificationNumber, String identificationType) {
 
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.identificationNumber = identificationNumber;
+        this.identificationType = identificationType;
 
     }
 

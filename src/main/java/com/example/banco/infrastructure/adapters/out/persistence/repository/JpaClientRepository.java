@@ -26,9 +26,6 @@ public interface JpaClientRepository extends JpaRepository<ClientEntity, Long> {
     @Query(value = "DELETE FROM clientes WHERE id = :id", nativeQuery = true)
     void deleteByIdNative(@Param("id") Long id);
 
-
-
-
     @Query(value = "SELECT CASE WHEN COUNT(*) > 0 THEN 'TRUE' ELSE 'FALSE' END " +
             "FROM clientes WHERE email = :email", nativeQuery = true)
     boolean existsByEmailNative(@Param("email") String email);

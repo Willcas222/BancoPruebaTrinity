@@ -11,5 +11,8 @@ public interface ProductRepositoryPort {
     boolean hasProducts(Long clientId);
     Optional<Product> findByAccountNumber(String accountNumber);
     boolean existsByClientIdAndGmfExemptTrue(Long clientId);
+    Optional<Product> findById(Long id);
+    void deleteById(Long id);
+
 
 }

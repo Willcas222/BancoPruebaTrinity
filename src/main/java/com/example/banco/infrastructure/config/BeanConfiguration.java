@@ -62,4 +62,9 @@ public class BeanConfiguration {
         return new UpdateGmfExemptUseCaseImpl(productRepositoryPort);
     }
 
+    @Bean
+    public DeleteProductUseCase deleteProductUseCase(ProductRepositoryPort productRepositoryPort) {
+        return new DeleteProductUseCaseImpl(productRepositoryPort);
+    }
+
 }
