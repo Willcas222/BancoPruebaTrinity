@@ -22,7 +22,7 @@ public class UpdateGmfExemptUseCaseImpl implements UpdateGmfExemptUseCase {
         }
 
         if (exempt) {
-            // Validación de la regla de oro: solo una cuenta exenta por cliente
+
             boolean alreadyHasExempt = productRepositoryPort.existsByClientIdAndGmfExemptTrue(product.getClientId());
             if (alreadyHasExempt) {
                 throw new IllegalStateException("El cliente ya tiene una cuenta exenta. Debe desactivar la anterior primero.");

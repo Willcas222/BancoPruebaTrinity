@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.Map;
 
 @RestController
@@ -58,8 +59,9 @@ public class ProductController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
+    public ResponseEntity<Map<String, String>> deleteProduct(@PathVariable Long id) {
         deleteProductUseCase.execute(id);
-        return ResponseEntity.noContent().build();
+        Map<String, String> response = Collections.singletonMap("mensaje", "Producto eliminado correctamente");
+        return ResponseEntity.ok(response);
     }
 }
