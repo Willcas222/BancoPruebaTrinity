@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  postgres-db:
+    image: postgres:16-alpine
+    container_name: banco-postgres
+    ports:
+      - "5640:5432"
+    environment:
+      POSTGRES_DB: bancoprueba
+      POSTGRES_USER: banco
+      POSTGRES_PASSWORD: "1003952237"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  banco-app:
+    build: .
+    container_name: banco-backend
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-db:5432/bancoprueba?sslmode=disable
+      - SPRING_DATASOURCE_USERNAME=banco
+      - SPRING_DATASOURCE_PASSWORD=1003952237
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_JPA_SHOW_SQL=true
+    depends_on:
+      - postgres-db
+
+volumes:
+  postgres_data:
